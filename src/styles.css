@@ -72,4 +72,18 @@ body {
   .fahrenheit {
     cursor: pointer;
   }
-  
+  .git-hub-line{
+    text-align: center;
+  }
+  .git-hub::before{
+    content: url("../img/octocat_.png");
+    vertical-align: middle;
+  }
+
+  .git-hub{
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .git-hub:hover{
+    color: #22b44b;
+  }
