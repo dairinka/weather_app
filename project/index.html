@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link href="src/styles.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="container page">
+        <form id="search-city">
+          <div class="input-group mb-5">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter the city"
+              id="user-city"
+            />
+            <input
+              class="btn btn-outline-secondary search-btn"
+              type="submit"
+              id="button-addon2"
+              value="Search"
+            />
+            <input
+              class="btn btn-primary current-btn"
+              type="button"
+              id="button-addon2"
+              value="Current"
+            />
+          </div>
+        </form>
+        <div class="row">
+          <div class="col mb-4">
+            <img class="icon-today" src="img/sun.png" />
+            <span class="temperature-today align-middle"></span>
+            <span class="degrees align-text-top">
+              <span class="celsius active">
+                °С
+              </span>
+              ||
+              <span class="fahrenheit">
+                °F
+              </span>
+            </span>
+          </div>
+          <div class="col city-name"></div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="row">
+              <div class="col-6">
+                <span>Humidity:</span>
+              </div>
+              <div class="col-2 text-end">
+                <span class="humidity-value"></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <span>Wind:</span>
+              </div>
+              <div class="col-2 text-end">
+                <span class="wind-value"></span>
+              </div>
+            </div>
+          </div>
+          <div class="offset-md-2 col-4">
+            <div class="row date-today">
+              <div class="col-8">
+                <span>Thursday</span>
+              </div>
+              <div class="col-4 text-end">
+                <span class="time">16:11</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col day-block">
+            <span class="day">
+              Fri
+            </span>
+
+            <span class="day day-icon-weather">
+              <img src="img/cloud-sun.png" alt="" />
+            </span>
+
+            <span class="day day-temperature">
+              10°С
+            </span>
+          </div>
+
+          <div class="col day-block">
+            <span class="day">
+              Sat
+            </span>
+
+            <span class="day day-icon-weather">
+              <img src="img/sun.png" alt="" />
+            </span>
+
+            <span class="day day-temperature">
+              12°С
+            </span>
+          </div>
+
+          <div class="col day-block">
+            <span class="day">
+              Sun
+            </span>
+
+            <span class="day day-icon-weather">
+              <img src="img/cloud-sun.png" alt="" />
+            </span>
+
+            <span class="day day-temperature">
+              9°С
+            </span>
+          </div>
+
+          <div class="col day-block">
+            <span class="day">
+              Mon
+            </span>
+
+            <span class="day day-icon-weather">
+              <img src="img/rain.png" alt="" />
+            </span>
+
+            <span class="day day-temperature">
+              7°С
+            </span>
+          </div>
+
+          <div class="col day-block">
+            <span class="day">
+              Tue
+            </span>
+
+            <span class="day day-icon-weather">
+              <img src="img/rain.png" alt="" />
+            </span>
+
+            <span class="day day-temperature">
+              3°С
+            </span>
+          </div>
+
+          <div class="col day-block">
+            <span class="day">
+              Wen
+            </span>
+
+            <span class="day day-icon-weather">
+              <img src="img/cloud.png" alt="" />
+            </span>
+
+            <span class="day day-temperature">
+              6°С
+            </span>
+          </div>
+
+          <div class="col day-block">
+            <span class="day">
+              Thu
+            </span>
+
+            <span class="day day-icon-weather">
+              <img src="img/cloud.png" alt="" />
+            </span>
+
+            <span class="day day-temperature">
+              5°С
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="src/index.js"></script>
+    <script></script>
+  </body>
+</html>
