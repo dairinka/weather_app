@@ -8,13 +8,16 @@ const wind = document.querySelector(".wind-value");
 const apiKey = "4a89b8ef6ac77d65a1o7btb04c63f7df";
 const icon = document.querySelector(".icon-today");
 const days = document.querySelectorAll(".day-name");
+const weatherDescription = document.querySelector("#weather-desk");
+const celsius = document.querySelector(".celsius");
+const fahrenheit = document.querySelector(".fahrenheit");
+const temperatureNow = document.querySelector(".temperature-today");
 
 searchForm.addEventListener("submit", showUserCity);
 currentLocationBtn.addEventListener("click", getCurrentData);
 
 function showUserCity(event) {
   event.preventDefault();
-  //placeCity.textContent = userCity.value;
   getTemperature(userCity.value);
 }
 
@@ -37,20 +40,23 @@ function getPosition(position) {
 
 function showDataCity(response) {
   console.log(response)
-  let currTemp = Math.round(response.data.temperature.current);
+  CelsiusTemperature = response.data.temperature.current;
+  let currTemp = Math.round(CelsiusTemperature);  
   let currHumidity = response.data.temperature.humidity;
   let currWind = Math.round(response.data.wind.speed);
   let currentCity = response.data.city;
   let currentIcon = response.data.condition.icon_url;
+  let currentDescription = response.data.condition.description;
   placeCurrentTemp.textContent = currTemp;
   humidity.textContent = `${currHumidity}%`;
   wind.textContent = `${currWind}m/s`;
   placeCity.textContent = currentCity;
-  icon.setAttribute('src', currentIcon )
+  weatherDescription.textContent = currentDescription;
+  icon.setAttribute('src', currentIcon );
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
 }
 
-
-// Filling days data
 function showDay() {
   let today = document.querySelector(".date-today");
   let now = new Date();
@@ -73,6 +79,7 @@ function showDay() {
 <div class="col-4 text-end"><span class="time">${hoursStr}:${minutesStr}</span></div>`;
   getWeekDays(sequenceDay, days);
 }
+
 function getWeekDays(currentDay, daysWeek){
   let nextDay = currentDay + 1;
   console.log("nextDay", nextDay)
@@ -83,24 +90,26 @@ function getWeekDays(currentDay, daysWeek){
     days[i].textContent = daysWeek[nextDay].slice(0, 3);
   }
 }
-getTemperature("New York");
+
+function showCelsius(event) {
+  event.preventDefault();
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
+  temperatureNow.textContent = Math.round(CelsiusTemperature);
+}
+
+function showFahrenheit(event) {
+  event.preventDefault();
+  celsius.classList.remove("active");
+  fahrenheit.classList.add("active");
+  temperatureNow.textContent = Math.round(CelsiusTemperature * 1.8 + 32);
+}
+
+
+
+let CelsiusTemperature = null; 
+let defaultCity = "New York";
+getTemperature(defaultCity);
 showDay();
-
-// let celsius = document.querySelector(".celsius");
-// let fahrenheit = document.querySelector(".fahrenheit");
-// let temperatureNow = document.querySelector(".temperature-today");
-// let currentTemperature = temperatureNow.textContent;
-
-// function showCelsius() {
-//   celsius.classList.add("active");
-//   fahrenheit.classList.remove("active");
-//   temperatureNow.textContent = currentTemperature;
-// }
-// celsius.addEventListener("click", showCelsius);
-
-// function showFahrenheit() {
-//   celsius.classList.remove("active");
-//   fahrenheit.classList.add("active");
-//   temperatureNow.textContent = Math.round(currentTemperature * 1.8 + 32);
-// }
-// fahrenheit.addEventListener("click", showFahrenheit);
+celsius.addEventListener("click", showCelsius);
+fahrenheit.addEventListener("click", showFahrenheit);
