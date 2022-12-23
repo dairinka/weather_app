@@ -54,8 +54,8 @@ function showDataCity(response) {
   let currentIcon = currentData.condition.icon_url;
   let currentDescription = currentData.condition.description;
   placeCurrentTemp.textContent = currTemp;
-  humidity.textContent = `${currHumidity}%`;
-  wind.textContent = `${currWind}m/s`;
+  humidity.textContent = `${currHumidity} %`;
+  wind.textContent = `${currWind} m/s`;
   placeCity.textContent = currentCity;
   weatherDescription.textContent = currentDescription;
   icon.setAttribute('src', currentIcon );
