@@ -1,106 +1,119 @@
 body {
     font-family: sans-serif;
-  }
-  .page {
-    width: 80%;
-    max-width: 1000px;
-    margin: 50px auto;
-    padding: 5%;
-    font-size: 20px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
-  }
-  .input-group
+    color: #575757;
+}
+
+.page {
+  width: 80%;
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 5%;
+  font-size: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+.input-group
     > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
     margin-left: 9px;
-  }
-  .search-btn {
-    background: #22b44b;
-    color: #575757;
-    width: 20%;
-  }
-  .search-btn:hover {
-    background: #66e35e;
-    border-color: #66e35e;
-  }
-  
-  .current-btn:hover {
-    background: #5498ff;
-  }
-  
-  .icon-today {
-    width: 80px;
-  }
-  .temperature-today {
-    font-family: monospace;
-    font-size: 35px;
-    font-weight: bold;
-    color: #575757;
-    display: inline-block;
-    width: 50px;
-    text-align: right;
-    margin-right: 5px;
-  }
-  
-  .degrees {
-    font-size: 16px;
-  }
-  .degrees .active {
-    font-weight: bold;
-  }
-  #weather-desk{
-    display: inline-block;
-    
-  }
-  #weather-desk::first-letter{
-    text-transform: uppercase;
-  }
-  .city-name {
-    font-size: 50px;
-    font-weight: bold;
-    color: #575757;
-    text-align: right;
-    line-height: 1;
-    margin-bottom: 24px;
-  }
-  .name-field{
-    color: #575757;
-    font-size: 16px;
-  }
-  .date-today {
-    font-size: 20px;
-  }
-  
-  .day {
-    display: block;
-    font-size: 16px;
-    text-align: center;
-  }
-  .day-icon-weather img {
-    width: 60px;
-  }
-  
-  .day-temperature {
-    font-size: 16px;
-    font-family: monospace;
-   
-  }
-  .celsius,
-  .fahrenheit {
-    cursor: default;
-  }
-  .git-hub-line{
-    text-align: center;
-  }
-  .git-hub::before{
-    content: url("../img/octocat_.png");
-    vertical-align: middle;
-  }
+}
 
-  .git-hub{
-    text-decoration: none;
-    cursor: pointer;
-  }
-  .git-hub:hover{
-    color: #22b44b;
-  }
+.search-btn {
+  background: #22b44b;
+  color: #575757;
+  width: 20%;
+}
+
+.search-btn:hover {
+  background: #66e35e;
+  border-color: #66e35e;
+}
+
+.current-btn:hover {
+  background: #5498ff;
+}
+
+.icon-today {
+  width: 80px;
+}
+
+.temperature-today {
+  font-family: monospace;
+  font-size: 35px;
+  font-weight: bold;
+  color: #575757;
+  display: inline-block;
+  width: 50px;
+  text-align: right;
+  margin-right: 5px;
+}
+
+.degrees {
+  font-size: 16px;
+}
+
+#weather-desk{
+  display: inline-block;
+  
+}
+
+#weather-desk::first-letter{
+  text-transform: uppercase;
+}
+
+.city-name {
+  font-size: 50px;
+  font-weight: bold;
+  color: #575757;
+  text-align: right;
+  line-height: 1;
+  margin-bottom: 24px;
+}
+
+.name-field{
+  color: #575757;
+  font-size: 16px;
+}
+
+.date-today {
+  font-size: 20px;
+}
+
+.day {
+  display: block;
+  font-size: 16px;
+  text-align: center;
+}
+
+.day-icon-weather img {
+  width: 60px;
+}
+
+.day-temperature {
+  font-size: 16px;
+  font-family: monospace;
+}
+
+.celsius {
+  font-family: monospace;
+  font-weight: bold;
+  color: #575757;
+}
+
+.git-hub-line{
+  text-align: center;
+}
+
+.git-hub::before{
+  content: url("../img/octocat_.png");
+  vertical-align: middle;
+}
+
+.git-hub{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.git-hub:hover{
+  color: #22b44b;
+}

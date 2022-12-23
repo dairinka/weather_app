@@ -10,7 +10,6 @@ const icon = document.querySelector(".icon-today");
 const days = document.querySelectorAll(".day-name");
 const weatherDescription = document.querySelector("#weather-desk");
 const celsius = document.querySelector(".celsius");
-const fahrenheit = document.querySelector(".fahrenheit");
 const temperatureNow = document.querySelector(".temperature-today");
 let now = new Date();
 
@@ -60,8 +59,6 @@ function showDataCity(response) {
   placeCity.textContent = currentCity;
   weatherDescription.textContent = currentDescription;
   icon.setAttribute('src', currentIcon );
-  celsius.classList.add("active");
-  fahrenheit.classList.remove("active");
   let coords = response.data.coordinates;
   userCity.value = '';
   showDay();
@@ -128,34 +125,14 @@ function showForecast(response){
       </div>`
     
   })
-  //  for(let i = 0; i < 7; i += 1, nextDay += 1){
-  //   if (daysWeek.length - 1 < nextDay){
-  //     nextDay = 0;
-  //   }
-  //   let day = daysWeek[nextDay];
-    
-  // }
   forecastElement.innerHTML = forecast;
 }
 
-function showCelsius(event) {
-  event.preventDefault();
-  celsius.classList.add("active");
-  fahrenheit.classList.remove("active");
-  temperatureNow.textContent = Math.round(CelsiusTemperature);
-}
 
-function showFahrenheit(event) {
-  event.preventDefault();
-  celsius.classList.remove("active");
-  fahrenheit.classList.add("active");
-  temperatureNow.textContent = Math.round(CelsiusTemperature * 1.8 + 32);
-}
 
 
 
 let CelsiusTemperature = null; 
 let defaultCity = "New York";
 getTemperature(defaultCity);
-celsius.addEventListener("click", showCelsius);
-fahrenheit.addEventListener("click", showFahrenheit);
+
