@@ -12,6 +12,7 @@ const weatherDescription = document.querySelector("#weather-desk");
 const celsius = document.querySelector(".celsius");
 const fahrenheit = document.querySelector(".fahrenheit");
 const temperatureNow = document.querySelector(".temperature-today");
+let now = new Date();
 
 searchForm.addEventListener("submit", showUserCity);
 currentLocationBtn.addEventListener("click", getCurrentData);
@@ -38,15 +39,21 @@ function getPosition(position) {
   axios.get(apiWeatherUserLocate).then(showDataCity);
 }
 
+function getForecast(coords) {
+  const apiWeatherForecast = `https://api.shecodes.io/weather/v1/forecast?lon=${coords.longitude}&lat=${coords.latitude}&key=${apiKey}`;
+  axios.get(apiWeatherForecast).then(showForecast);
+}
+
 function showDataCity(response) {
   console.log(response)
-  CelsiusTemperature = response.data.temperature.current;
+  let currentData = response.data;
+  CelsiusTemperature = currentData.temperature.current;
   let currTemp = Math.round(CelsiusTemperature);  
-  let currHumidity = response.data.temperature.humidity;
-  let currWind = Math.round(response.data.wind.speed);
-  let currentCity = response.data.city;
-  let currentIcon = response.data.condition.icon_url;
-  let currentDescription = response.data.condition.description;
+  let currHumidity = currentData.temperature.humidity;
+  let currWind = Math.round(currentData.wind.speed);
+  let currentCity = currentData.city;
+  let currentIcon = currentData.condition.icon_url;
+  let currentDescription = currentData.condition.description;
   placeCurrentTemp.textContent = currTemp;
   humidity.textContent = `${currHumidity}%`;
   wind.textContent = `${currWind}m/s`;
@@ -55,40 +62,80 @@ function showDataCity(response) {
   icon.setAttribute('src', currentIcon );
   celsius.classList.add("active");
   fahrenheit.classList.remove("active");
+  let coords = response.data.coordinates;
+  userCity.value = '';
+  showDay();
+  getTime();
+  getForecast(coords);
+}
+
+function getTime(){
+  let now = new Date();
+  let currentTime = now.toLocaleTimeString('en-Us', {hour: '2-digit', minute:'2-digit', hour12: false});
+  console.log("currentTime", currentTime);
+  setTimeout(showTime, 1000);
+  return currentTime;
+}
+
+function showTime() {
+  const timeElement = document.querySelector(".time");
+  timeElement.textContent = getTime();
 }
 
 function showDay() {
-  let today = document.querySelector(".date-today");
-  let now = new Date();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-  ];
-  let sequenceDay = now.getDay();
-  let currentDay = days[sequenceDay];
-  let hours = now.getHours();
-  let hoursStr = hours.toString().padStart(2, "0");
-  let minutes = now.getMinutes();
-  let minutesStr = minutes.toString().padStart(2, "0");
-  today.innerHTML = `<div class="col-8"><span>${currentDay}</span></div>
-<div class="col-4 text-end"><span class="time">${hoursStr}:${minutesStr}</span></div>`;
-  getWeekDays(sequenceDay, days);
+  const currentDayElement = document.querySelector(".current-day");
+  currentDayElement.textContent = now.toLocaleDateString('en-Us', {weekday: 'long'});
 }
 
-function getWeekDays(currentDay, daysWeek){
-  let nextDay = currentDay + 1;
-  console.log("nextDay", nextDay)
-  for(let i = 0; i < 7; i += 1, nextDay += 1){
-    if (daysWeek.length - 1 < nextDay){
-      nextDay = 0;
-    }
-    days[i].textContent = daysWeek[nextDay].slice(0, 3);
-  }
+function getDay(timestamp) {
+  let day = new Date(timestamp * 1000).getDay();
+  let daysWeek = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat"
+  ];
+  return daysWeek[day];
+}
+
+function showForecast(response){
+  console.log("forecast",response)
+  let forecastData = response.data.daily;
+  let forecastElement = document.querySelector(".forecast");
+  let forecast = "";
+  
+  forecastData.forEach(function(forecastDay) {
+    let temp = Math.round(forecastDay.temperature.day);
+    let icon = forecastDay.condition.icon_url;
+    let day = getDay(forecastDay.time);
+    console.log("forecastDay.time", forecastDay.time)
+    console.log("day", day)
+    forecast += `<div class="col day-block">
+        <span class="day day-name">
+          ${day}
+        </span>
+
+        <span class="day day-icon-weather">
+          <img src="${icon}" alt="" />
+        </span>
+
+        <span class="day day-temperature">
+          ${temp}°С
+        </span>
+      </div>`
+    
+  })
+  //  for(let i = 0; i < 7; i += 1, nextDay += 1){
+  //   if (daysWeek.length - 1 < nextDay){
+  //     nextDay = 0;
+  //   }
+  //   let day = daysWeek[nextDay];
+    
+  // }
+  forecastElement.innerHTML = forecast;
 }
 
 function showCelsius(event) {
@@ -110,6 +157,5 @@ function showFahrenheit(event) {
 let CelsiusTemperature = null; 
 let defaultCity = "New York";
 getTemperature(defaultCity);
-showDay();
 celsius.addEventListener("click", showCelsius);
 fahrenheit.addEventListener("click", showFahrenheit);
